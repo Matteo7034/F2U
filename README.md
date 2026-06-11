@@ -38,7 +38,9 @@ sudo ./install.sh
 
 - (Optional) Set Ubuntu wallpaper
 
--  Install Plymouth Ubuntu theme
+- Install Plymouth Ubuntu theme
+
+- Setup Terminal Theme
 
 ## 📁 Project structure
 ![Tree](screenshots/tree1.png)
