@@ -122,16 +122,36 @@ apply_ptyxis_theme() {
 
     msg "Ptyxis theme set to Ubuntu."
 }
+apply_yaru_sounds() {
+    REAL_USER=$(logname)
+    USER_BUS="/run/user/$(id -u $REAL_USER)/bus"
+    ENV="DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=$USER_BUS"
+
+    msg "Enabling Yaru sound theme..."
+
+    # 1. Imposta Yaru come tema sonoro predefinito
+    runuser -l "$REAL_USER" -c "$ENV gsettings set org.gnome.desktop.sound theme-name 'Yaru'"
+    
+    # 2. Attiva gli effetti sonori per gli eventi di sistema (es. svuotamento cestino, notifiche)
+    runuser -l "$REAL_USER" -c "$ENV gsettings set org.gnome.desktop.sound event-sounds true"
+    
+    # 3. Attiva i suoni di feedback (es. quando alzi/abbassi il volume o premi tasti non validi)
+    runuser -l "$REAL_USER" -c "$ENV gsettings set org.gnome.desktop.sound input-feedback-sounds true"
+
+    msg "Yaru sound theme applied and enabled successfully."
+}
+
 main(){
     check_root
     msg "Starting F2U installation..."
 
     #install_deps
     #install_themes
-    #apply_gnome_settings
-    #wallpaper
+    apply_gnome_settings
+    wallpaper
     #install_plymouth
     apply_ptyxis_theme
+    apply_yaru_sounds
     #install_gdm
 
     msg "Installation complete! Reboot to apply all changes."
