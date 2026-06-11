@@ -14,7 +14,8 @@ check_root(){
 
 install_deps(){
   msg "Installing of necessary dependecies..."
-
+  dnf update
+  flatpak install flathub com.mattjakeman.ExtensionManager
   dnf install -y \
         git \
         gnome-shell-extension-appindicator \
@@ -25,11 +26,16 @@ install_deps(){
         libsass \
         make \
         gcc \
-        plymouth-plugin-script
+        plymouth-plugin-script \
+        unzip
         #gdm-tools 
         
 }
-
+dash_to_dock(){
+  wget https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v90.shell-extension.zip -O dash-to-dock.zip
+  mkdir -p ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com
+  unzip dash-to-dock.zip -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com
+}
 install_themes() {
   msg "Installing Yaru themes..."
   dnf install -y \
@@ -129,13 +135,13 @@ apply_yaru_sounds() {
 
     msg "Enabling Yaru sound theme..."
 
-    # 1. Imposta Yaru come tema sonoro predefinito
+    # 1. Set yaru sound theme
     runuser -l "$REAL_USER" -c "$ENV gsettings set org.gnome.desktop.sound theme-name 'Yaru'"
     
-    # 2. Attiva gli effetti sonori per gli eventi di sistema (es. svuotamento cestino, notifiche)
+    # 2. Activate system sound effect
     runuser -l "$REAL_USER" -c "$ENV gsettings set org.gnome.desktop.sound event-sounds true"
     
-    # 3. Attiva i suoni di feedback (es. quando alzi/abbassi il volume o premi tasti non validi)
+    # 3. Activate fallback sound Effect
     runuser -l "$REAL_USER" -c "$ENV gsettings set org.gnome.desktop.sound input-feedback-sounds true"
 
     msg "Yaru sound theme applied and enabled successfully."
@@ -145,11 +151,12 @@ main(){
     check_root
     msg "Starting F2U installation..."
 
-    #install_deps
-    #install_themes
+    install_deps
+    install_themes
+    #dash_to_dock
     apply_gnome_settings
     wallpaper
-    #install_plymouth
+    install_plymouth
     apply_ptyxis_theme
     apply_yaru_sounds
     #install_gdm
