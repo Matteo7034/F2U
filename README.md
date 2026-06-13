@@ -5,6 +5,11 @@
 ![Fedora](https://img.shields.io/badge/Fedora-44+-blue)
 ![GNOME](https://img.shields.io/badge/GNOME-50-orange)
 
+## ⚠️ Temporary break
+I'm currently refactoring the whole project and things got messy.
+The installer is not working for now — I'll resume work after a break.
+
+
 A small script to transform the Fedora workstation theme into Ubuntu LTS.
 
 ![Screen](screenshots/screen.png)
@@ -15,7 +20,7 @@ A small script to transform the Fedora workstation theme into Ubuntu LTS.
 - Ubuntu Dock (Dash-to-Dock)
 - Ubuntu Wallpapers optional (work in progress) 🌇
 - Accent Color orange 🟠
-- Plymouth Support (Ubuntu theme)
+- Plymouth Support (Work in progress)
 - Automated Script 🚗
 - Yaru Sounds! 🔊
 ---
@@ -81,6 +86,7 @@ user extensions are not detected until the session restarts.
 (In development)
 The uninstall.sh script will restore Fedora's original themes and settings. 
 
+
 ## 🛣 Roadmap
 - [X] Sound support
 - [X] Terminal support
@@ -90,6 +96,7 @@ The uninstall.sh script will restore Fedora's original themes and settings.
 - [ ] Full GDM support
 - [ ] Font Support
 - [ ] Lock Screen Support
+- [ ] Plymouth
 
 ## 📜  License
 
