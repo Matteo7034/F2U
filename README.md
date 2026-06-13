@@ -49,8 +49,29 @@ sudo ./install.sh
 
 - Setup yaru audio 🔊
 
+- Install gnome-extension for dash to dock
+
+## ⚠️ Small issue (Wayland sessions)
+
+If Dash to Dock doesn't appear after the first installation, it's normal on Wayland:  
+GNOME Shell does not reload user extensions until the session is restarted.
+
+### ✅ Fix
+Log out and log back in, then reinstall using the script:
+
+```bash
+cd F2U
+sudo ./install.sh
+```
+
+### ℹ️ Why this happens
+On Wayland, GNOME Shell cannot be reloaded (no `Alt+F2 → r`), so newly installed
+user extensions are not detected until the session restarts.
+
+
+
 ## 📁 Project structure
-![Tree](screenshots/tree1.png)
+![Tree](screenshots/tree.jpeg)
 
 ## 🔗 Quick access
 - [install.sh](install.sh)

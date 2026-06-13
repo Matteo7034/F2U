@@ -32,9 +32,8 @@ install_deps(){
         
 }
 dash_to_dock(){
-  wget https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v90.shell-extension.zip -O dash-to-dock.zip
-  mkdir -p ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com
-  unzip dash-to-dock.zip -d ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com
+    gnome-extensions install -f ./assets/dash-to-dock@micxgx.gmail.com.zip
+    gnome-extensions enable dash-to-dock@micxgx.gmail.com
 }
 install_themes() {
   msg "Installing Yaru themes..."
@@ -153,7 +152,7 @@ main(){
 
     install_deps
     install_themes
-    #dash_to_dock
+    dash_to_dock
     apply_gnome_settings
     wallpaper
     install_plymouth
